@@ -1,0 +1,20 @@
+node {
+    stage('checkout') {
+       git branch: 'main', url: 'https://github.com/sak2944-wqsga/Terraform-git.git'
+    }
+    stage('init') {
+        dir('Day-2-sample-base-code'){
+            sh 'terraform init'
+        }
+    }
+    stage('plan') {
+       dir('Day-2-sample-base-code'){
+            sh 'terraform plan'
+       }
+    }
+    stage('apply') {
+       dir('Day-2-sample-base-code'){
+            sh 'terraform apply -auto-approve'
+       }
+    }
+}
